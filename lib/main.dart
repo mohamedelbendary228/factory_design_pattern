@@ -1,8 +1,8 @@
 import 'package:factory_desing_pattern/dart_example.dart';
+import 'package:factory_desing_pattern/flutter_example.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-
   /// Dart Example initialization
   Employee employee1 = Employee.employeeType(EmployeeType.programmer);
   employee1.work();
@@ -16,6 +16,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,9 +26,24 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text("Factory design Pattern"),
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Factory design pattern"),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PlatformButton(Theme.of(context).platform).buildButton(
+                  () {
+                    debugPrint("${Theme.of(context).platform}");
+                  },
+                  Text("${Theme.of(context).platform.name} button"),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
